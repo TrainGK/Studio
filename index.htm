@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Before/After Image Slider</title>
+  <link rel="stylesheet" href="styles.css"> <!-- External CSS link -->
+</head>
+<body>
+
+  <div class="container">
+    <div class="image-container">
+      <!-- After image (Background) -->
+      <img class="image-after"
+        src="https://images.samsung.com/is/image/samsung/p6pim/au/2401/gallery/au-galaxy-s24-s928-490229-sm-s928bzofats-539385641?imbypass=true"
+        alt="After image" />
+      <!-- Before image (Foreground) -->
+      <img class="image-before"
+        src="https://images.samsung.com/is/image/samsung/p6pim/au/2401/gallery/au-galaxy-s24-s928-490229-sm-s928blgfats-539385431?imbypass=true"
+        alt="Before image" />
+    </div>
+
+    <!-- Invisible range slider for user interaction -->
+    <input type="range" min="0" max="100" value="50" class="slider" aria-label="Before/After slider" />
+
+    <!-- Vertical separator line -->
+    <div class="slider-line"></div>
+
+    <!-- Drag button -->
+    <div class="slider-button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+        viewBox="0 0 256 256">
+        <line x1="128" y1="40" x2="128" y2="216" stroke="currentColor"
+          stroke-linecap="round" stroke-width="16"></line>
+        <line x1="96" y1="128" x2="16" y2="128" stroke="currentColor"
+          stroke-linecap="round" stroke-width="16"></line>
+        <polyline points="48 160 16 128 48 96" stroke="currentColor"
+          stroke-linecap="round" stroke-width="16"></polyline>
+        <line x1="160" y1="128" x2="240" y2="128" stroke="currentColor"
+          stroke-linecap="round" stroke-width="16"></line>
+        <polyline points="208 96 240 128 208 160" stroke="currentColor"
+          stroke-linecap="round" stroke-width="16"></polyline>
+      </svg>
+    </div>
+  </div>
+
+  <script src="script.js"></script> <!-- External JS link -->
+
+</body>
+</html>

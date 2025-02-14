@@ -44,7 +44,7 @@ main {
 .slider-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: left;
 }
 
@@ -69,13 +69,15 @@ main {
   outline-offset: 3px;
 }
 
-..slider-line {
+.slider-line {
   position: absolute;
   inset: 0;
   width: .2rem;
   height: 100%;
   background-color: #fff;
+  /* z-index: 10; */
   left: var(--position);
+  transform: translateX(-50%);
   pointer-events: none;
 }
 

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Before/After Image Slider</title>
+  <style>
+    /* Reset styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f5f5f5;
+    }
+
+    /* Container for the slider */
+    .container {
+      position: relative;
+      width: 800px;
+      max-width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    /* Image container */
+    .image-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* After image (background) */
+    .image-after {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    /* Before image (foreground) */
+    .image-before {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      clip-path: inset(0 50% 0 0); /* Default position */
+    }
+
+    /* Invisible range slider */
+    .slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 4; /* Ensure it's on top */
+    }
+
+    /* Vertical separator line */
+    .slider-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background-color: #fff;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    /* Drag button */
+    .slider-button {
+      position: absolute;
+      background-color: #fff;
+      color: black;
+      padding: 0.5rem;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      z-index: 3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="image-container">
+      <!-- After image (Background) -->
+      <img class="image-after"
+        src="https://images.samsung.com/is/image/samsung/p6pim/au/2401/gallery/au-galaxy-s24-s928-490229-sm-s928bzofats-539385641?imbypass=true"
+        alt="After image" />
+      <!-- Before image (Foreground) -->
+      <img class="image-before"
+        src="https://images.samsung.com/is/image/samsung/p6pim/au/2401/gallery/au-galaxy-s24-s928-490229-sm-s928blgfats-539385431?imbypass=true"
+        alt="Before image" />
+    </div>
+
+    <!-- Invisible range slider for user interaction -->
+    <input type="range" min="0" max="100" value="50" class="slider" aria-label="Before/After slider" />
+
+    <!-- Vertical separator line -->
+    <div class="slider-line"></div>
+
+    <!-- Drag button -->
+    <div class="slider-button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+        viewBox="0 0 256 256">
+        <line x1="128" y1="40" x2="128" y2="216" stroke="currentColor"
+          stroke-linecap="round" stroke-width="16"></line>
+        <line x1="96" y1="128" x2="16" y2="128" stroke="currentColor"
+          stroke-linecap="round" stroke-width="16"></line>
+        <polyline points="48 160 16 128 48 96" stroke="currentColor"
+          stroke-linecap="round" stroke-width="16"></polyline>
+        <line x1="160" y1="128" x2="240" y2="128" stroke="currentColor"
+          stroke-linecap="round" stroke-width="16"></line>
+        <polyline points="208 96 240 128 208 160" stroke="currentColor"
+          stroke-linecap="round" stroke-width="16"></polyline>
+      </svg>
+    </div>
+  </div>
+
+  <script>
+    const slider = document.querySelector('.slider');
+    const imageBefore = document.querySelector('.image-before');
+    const sliderLine = document.querySelector('.slider-line');
+    const sliderButton = document.querySelector('.slider-button');
+
+    slider.addEventListener('input', (e) => {
+      let percentage = e.target.value;
+      imageBefore.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+      sliderLine.style.left = `${percentage}%`;
+      sliderButton.style.left = `${percentage}%`;
+    });
+  </script>
+
+</body>
+</html>

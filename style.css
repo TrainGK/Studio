@@ -69,15 +69,13 @@ main {
   outline-offset: 3px;
 }
 
-.slider-line {
+..slider-line {
   position: absolute;
   inset: 0;
   width: .2rem;
   height: 100%;
   background-color: #fff;
-  /* z-index: 10; */
   left: var(--position);
-  transform: translateX(-50%);
   pointer-events: none;
 }
 
